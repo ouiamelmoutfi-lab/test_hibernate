@@ -1,20 +1,27 @@
 package ma.projet.service;
 
+import ma.projet.classes.Client;
+import ma.projet.classes.Contrat;
 import ma.projet.util.HibernateUtil;
 import org.hibernate.Session;
 
 import java.util.List;
 
-public List<Projet> finprojet(Employe employe){
-    Session session = HibernateUtil.getSessionFactory().openSession();
+public class ClientService extends AbstractFacade<Client> {
+    public ClientService(){
+        super(Client.class);
+    }
+    public List<Contrat> contracin(Client client){
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-    try {
-        List<Projet> projets = session.createQuery(
-                "select p from Projet p where p.employe = :employe"
-        ).setParameter("employe", employe).list();
+        try {
+            List<Contrat> contrsts = session.createQuery(
+                    "select c from Contrat c where c.contrat = :contrat"
+            ).setParameter("contrat", contrat).list();
 
-        return projets;
-    }finally {
-        session.close();
+            return contrat;
+        }finally {
+            session.close();
+        }
     }
 }
